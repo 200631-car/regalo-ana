@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Anahy ❤</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding: 20px;
+            animation: gradiente 10s ease infinite;
+        }
+
+        @keyframes gradiente {
+            0% { background: linear-gradient(to right, #ff9a9e, #fad0c4); }
+            25% { background: linear-gradient(to right, #fbc2eb, #a6c1ee); }
+            50% { background: linear-gradient(to right, #ffb6c1, #ff77ff); }
+            75% { background: linear-gradient(to right, #ffe6f0, #ffcccc); }
+            100% { background: linear-gradient(to right, #ff9a9e, #fad0c4); }
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin-top: 50px;
+            width: 60%;
+        }
+
+        h1 {
+            color: #ff4d6d;
+        }
+
+        p {
+            font-size: 18px;
+            color: #333;
+        }
+
+        .heart {
+            font-size: 60px;
+            color: red;
+            animation: latir 1s infinite alternate;
+        }
+
+        @keyframes latir {
+            from { transform: scale(1); }
+            to { transform: scale(1.2); }
+        }
+
+        .boton {
+            background-color: #ff4d6d;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 18px;
+            transition: background-color 0.3s ease, transform 0.3s;
+            cursor: pointer;
+        }
+
+        .boton:hover {
+            background-color: #ff1e40;
+            transform: scale(1.1);
+        }
+
+        .imagen {
+            width: 100%;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .galeria {
+            margin-top: 30px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            width: 80%;
+        }
+
+        .galeria h2 {
+            color: #ff4d6d;
+        }
+
+        .imagenes {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .imagenes img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .imagenes img:hover {
+            transform: scale(1.2);
+        }
+
+        footer {
+            margin-top: 50px;
+            font-size: 16px;
+            color: #333;
+            text-align: center;
+            background-color: #ff4d6d;
+            padding: 10px;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Estilos para el modal de imágenes */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 50%;
+            position: relative;
+        }
+
+        .close {
+            color: #ff4d6d;
+            font-size: 30px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+        /* Estilos para el mensaje oculto */
+        .mensaje {
+            display: none;
+            background: #ffebf0;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            font-size: 18px;
+            font-weight: bold;
+            color: #ff4d6d;
+            text-align: center;
+            margin-top: 20px;
+            border: 3px dashed #ff4d6d;
+        }
+
+        /* Estilos para el mensaje sorpresa */
+        .mensaje-sorpresa {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.5);
+            background-color: #ff4d6d;
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        /* Clase para mostrar el mensaje con efecto de "susto" */
+        .mostrar-sorpresa {
+            display: block;
+            transform: translate(-50%, -50%) scale(1.2);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Para mi hermosa Anahy ❤</h1>
+        <p>Amor, cada día a tu lado es un regalo. Te amo con todo mi corazón.</p>
+        <span class="heart">❤</span>
+        
+        <!-- Galería de fotos -->
+        <div class="galeria">
+            <h2>Nuestros momentos juntos 💕</h2>
+            <div class="imagenes">
+                <img src="foto1.jpg" alt="Foto 1" onclick="mostrarModal('¡Este fue un día muy hermoso para mí, amé todo de ese día, pero bueno, simplemente a tu lado soy el hombre más feliz.')">
+                <img src="foto2.jpg" alt="Foto 2" onclick="mostrarModal('¡Mi amor, recuerda lo mucho que te amoooo.')">
+                <img src="foto3.jpg" alt="Foto 3" onclick="mostrarModal('¡Siempre juntos, esto será eternoooo.')">
+            </div>
+        </div>
+
+        <!-- Foto principal -->
+        <img class="imagen" src="foto_anahy.jpg" alt="nuestra foto juntos">
+        
+        <p>Espero que esta página te haga sonreír, mi amor. Te amo muchísimo hermosotaaaaa.</p>
+
+        <!-- Botón para abrir enlace -->
+        <a class="boton" href="https://www.youtube.com/watch?v=Iq-YwZI6Mb4" target="_blank">Haz clic aquí</a>
+
+        <!-- Botón para mostrar el mensaje -->
+        <button class="boton" onclick="mostrarMensaje()">Haz clic aquí para ver tu mensaje</button>
+
+        <!-- Mensaje especial oculto -->
+        <div class="mensaje" id="mensaje">
+            💖 Ehh bueno mi amor, esto solo es para recordarte lo mucho pero mucho que te amo y quiero que sepas que te amo con toda mi alma, mi reina hermosa 💗 <br><br>
+            Créeme que esto es un poco costoso de hacer, pero por ti hago lo que sea, mi reina. <br><br>
+            Te amo con todo mi culachón ❤ <br><br>
+            <strong>Att: Carlitos</strong> 💕
+        </div>
+    </div>
+
+    <!-- Modal de imágenes -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModal()">&times;</span>
+            <p id="mensajeModal"></p>
+        </div>
+    </div>
+
+    <!-- Mensaje sorpresa -->
+    <div id="mensajeSorpresa" class="mensaje-sorpresa">
+        ¡RECUERDA QUE LO ERES TODO PARA MÍ! 💖
+    </div>
+
+    <footer>
+        <p>Te amo más cada día, Anahy. 💖</p>
+    </footer>
+
+    <script>
+        function mostrarModal(mensaje) {
+            document.getElementById('mensajeModal').innerText = mensaje;
+            document.getElementById('myModal').style.display = "flex";
+        }
+
+        function cerrarModal() {
+            document.getElementById('myModal').style.display = "none";
+        }
+
+        function mostrarMensaje() {
+            document.getElementById("mensaje").style.display = "block";
+        }
+
+        // Función para mostrar el mensaje sorpresa
+        function mostrarMensajeSorpresa() {
+            let mensaje = document.getElementById("mensajeSorpresa");
+            mensaje.classList.add("mostrar-sorpresa");
+
+            // Reproducir sonido (opcional)
+            let audio = new Audio("susto.mp3");
+            audio.play();
+
+            // Desaparece después de 3 segundos
+            setTimeout(() => {
+                mensaje.classList.remove("mostrar-sorpresa");
+            }, 3000);
+        }
+
+        // Mostrar el mensaje sorpresa después de 10 segundos
+        setTimeout(mostrarMensajeSorpresa, 10000);
+    </script>
+</body>
+</html>
